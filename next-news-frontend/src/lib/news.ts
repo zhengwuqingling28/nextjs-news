@@ -6,7 +6,7 @@ const GetNewsHandler = async (): Promise<INews[]> => {
   return data;
 };
 
-export async function getAvailableNewsYears() {
+export const getAvailableNewsYears = async () => {
   const news = await GetNewsHandler();
   return news
     .reduce((years, news) => {
@@ -17,4 +17,14 @@ export async function getAvailableNewsYears() {
       return years;
     }, [])
     .sort((a, b) => b - a);
-}
+};
+
+export const getNewsBySlugHandler = async (slug: string): Promise<INews> => {
+  const res = await fetch(`http://localhost:8000/news?slug=${slug}`, {
+    method: "GET",
+  });
+
+  const data = await res.json();
+  const news: INews = { ...data[0] };
+  return news;
+};

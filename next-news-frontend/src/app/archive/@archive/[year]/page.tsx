@@ -1,6 +1,3 @@
-import Link from "next/link";
-
-import { getAvailableNewsYears } from "@/lib/news";
 import NewsList from "@/components/news/news-list";
 
 const FilterNewsPage = async ({ params }: { params: { year: string } }) => {
@@ -11,22 +8,8 @@ const FilterNewsPage = async ({ params }: { params: { year: string } }) => {
 
   const news = await res.json();
 
-  const links: number[] = await getAvailableNewsYears();
-
   return (
     <>
-      <header id="archive-header">
-        <nav>
-          <ul>
-            {links &&
-              links.map((link: number) => (
-                <li key={link}>
-                  <Link href={`/archive/${link}`}>{link}</Link>
-                </li>
-              ))}
-          </ul>
-        </nav>
-      </header>
       <NewsList news={news} />
     </>
   );

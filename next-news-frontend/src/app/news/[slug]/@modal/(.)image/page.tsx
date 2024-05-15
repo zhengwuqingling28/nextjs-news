@@ -1,13 +1,15 @@
 "use client";
 
 import { getNewsBySlugHandler } from "@/lib/news";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const InterceptingImagePage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
   const [newsItem, setNewsItem] = useState<INews | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +35,7 @@ const InterceptingImagePage = ({ params }: { params: { slug: string } }) => {
   }
   return (
     <>
-      <div className="modal-backdrop">
+      <div className="modal-backdrop" onClick={router.back}>
         <dialog className="modal" open>
           <div className="fullscreen-image">
             <img src={`/images/${newsItem.image}`} alt={newsItem.title} />

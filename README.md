@@ -8,7 +8,7 @@ Using Nextjs, Typescript, json-server
 1.  **Step 1.**
     Clone the project
     ```sh
-    git clone https://github.com/zhengwuqingling28/nextjs-blog.git
+    git clone https://github.com/zhengwuqingling28/nextjs-news.git
     ```
 1.  **Step 2.**
     go to backend(mock API:json-server)
